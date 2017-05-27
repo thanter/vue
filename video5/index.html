@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Learning Vue</title>
+	<style>
+		.red-background {
+			background: red;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="root">
+		<!-- 
+		'echoing' title as attribte won't work
+		only as a value of a dom element
+		<button title="{{ title }}">{{ title }}</button> 
+		-->
+
+		<button :title="title" @click="changeTitle">Button</button>
+
+		<br>
+
+		<button :class="{ 'red-background': isLoading }" @click="toggleClass">Click me</button>
+		
+		<br>
+
+		<button :disabled="disabled">Click me</button>
+	</div>
+
+
+	<script src="https://unpkg.com/vue@2.3.3"></script>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#root',
+
+			data: {
+				title: "thanasis",
+				isLoading: false,
+				disabled: false
+			},
+
+			methods: {
+				changeTitle() {
+					this.title = "panos";
+				},
+
+				toggleClass() {
+					this.isLoading = !this.isLoading;
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

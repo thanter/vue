@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Learning Vue</title>
+</head>
+<body>
+
+	<div id="root">
+		<input v-model="message" type="text">
+		<h1>{{ reversed }}</h1>
+
+		<br>
+		<h3>All tasks</h3>
+		<ul>
+			<li v-for="task in tasks" v-text="task.description"></li>
+		</ul>
+
+		<br>
+		<h3>Incomplete tasks</h3>
+		<ul>
+			<li v-for="task in incompleteTasks" v-text="task.description"></li>
+		</ul>
+	</div>
+
+
+	<script src="https://unpkg.com/vue@2.3.3"></script>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#root',
+
+			data: {
+				message: "Hello world",
+				tasks: [
+					{description: "Buy milk", completed: true},
+					{description: "Learn js", completed: false},
+					{description: "Learn Vuejs", completed: false}
+				]
+			},
+
+			computed: {
+				reversed() {
+					return this.message.split("").reverse().join("");
+				},
+
+				incompleteTasks() {
+					return this.tasks.filter(task => ! task.completed);
+				}
+			}	
+		});
+	</script>
+
+</body>
+</html>
